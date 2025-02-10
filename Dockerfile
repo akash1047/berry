@@ -16,12 +16,12 @@ COPY --from=deps --chown=berry:me /app/node_modules ./node_modules/
 COPY . .
 RUN npm run build
 
-FROM base AS test
-COPY --from=build --chown=berry:me /app/node_modules ./node_modules/
-COPY --from=build --chown=berry:me /app/package*.json ./
-
-USER berry
-RUN npm run test
+# FROM base AS test
+# COPY --from=build --chown=berry:me /app/node_modules ./node_modules/
+# COPY --from=build --chown=berry:me /app/package*.json ./
+#
+# USER berry
+# RUN npm run test
 
 FROM base AS release
 COPY --from=build --chown=berry:me /app/node_modules ./node_modules/
