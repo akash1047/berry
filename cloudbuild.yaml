@@ -2,8 +2,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/berry:$COMMIT_SHA', '.'] # Tag with commit SHA
-    # Cache layers for faster builds (best practice)
-    cache: {'dir': 'cache'}
 
 images: ['asia-south1-docker.pkg.dev/$PROJECT_ID/berry:$COMMIT_SHA']
 
