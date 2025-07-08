@@ -19,6 +19,7 @@ WORKDIR /usr/src/app
 ################################################################################
 # Create a stage for installing production dependecies.
 FROM base as deps
+ENV NEXT_TELEMETRY_DISABLED=1
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.npm to speed up subsequent builds.
@@ -50,6 +51,7 @@ RUN npm run build
 # where the necessary files are copied from the build stage.
 FROM base as final
 
+ENV NEXT_TELEMETRY_DISABLED=1
 # Use production node environment by default.
 ENV NODE_ENV production
 
